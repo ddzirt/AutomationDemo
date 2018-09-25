@@ -2,7 +2,10 @@ package com.automationdemo;
 
 import android.app.Application;
 
+import com.crashlytics.android.Crashlytics;
 import com.facebook.react.ReactApplication;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
+import io.fabric.sdk.android.Fabric;
 import io.sentry.RNSentryPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -24,6 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativeConfigPackage(),
             new RNSentryPackage()
       );
     }
@@ -42,6 +46,7 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+    Fabric.with(this, new Crashlytics());
     SoLoader.init(this, /* native exopackage */ false);
   }
 }
