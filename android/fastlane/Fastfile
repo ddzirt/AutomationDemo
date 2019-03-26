@@ -31,9 +31,7 @@ platform :android do
   end
 
   lane :execFile do
-    Dir.chdir ".." do
-      sh "touch bundle-js.txt"
-    end
+    bash "../bundle-js.sh"
   end
 
   desc "Submit to Crashlytics"
